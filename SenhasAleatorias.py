@@ -1,8 +1,6 @@
 import random
 import string
 
-tamanho = int(input("Digite o comprimento da senha: "))
-
 letras_maiusculas = ''
 while letras_maiusculas != 's' and letras_maiusculas != 'n':
     letras_maiusculas = input("Incluir letras maiúsculas? (s/n): ")
@@ -44,5 +42,14 @@ if simbolos == 's':
 if caracteres == '':
     print("Erro: Nenhuma opção selecionada para a geração de senha.")
 else:
-    senha = ''.join(random.choice(caracteres) for _ in range(tamanho))
+    tamanho = int(input("Digite o comprimento da senha: "))
+    senha = ''
+    ultimo_caractere = ''
+    for _ in range(tamanho):
+        novo_caractere = random.choice(caracteres)
+        while novo_caractere == ultimo_caractere:
+            novo_caractere = random.choice(caracteres)
+        senha += novo_caractere
+        ultimo_caractere = novo_caractere
+
     print("Senha gerada:", senha)
